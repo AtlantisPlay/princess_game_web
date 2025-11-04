@@ -1,0 +1,382 @@
+{
+  "$schema": "//local/vfx_preset.schema.json",
+  "version": 1,
+  "notes": "Consolidated presets: base building blocks + event-level bundles (gp.*, ui.*, env.*, char.*, cake.*, paint.*, trace.*). Bundles compose glow/scale/particles and reference base presets where possible.",
+  "presets": [
+    {
+      "id": "sparkle_light.small",
+      "type": "burst",
+      "duration_s": 0.45,
+      "blend": "additive",
+      "anchors": [{ "target": "object", "name": "center", "offset_px": [0, 0] }],
+      "scale": { "ref": "object_bbox", "factor": 1.0 },
+      "density_policy": "object_area",
+      "audio_hook": "none",
+      "concurrency_tag": "fx_minor",
+      "max_concurrent": 2,
+      "emitters": [
+        {
+          "shape": "point",
+          "count": 18,
+          "spread_deg": 70,
+          "speed_min_max": [80, 140],
+          "life_s_min_max": [0.32, 0.48],
+          "size_px_start_end": [5, 1],
+          "alpha_start_end": [1.0, 0.0],
+          "color_palette": "sparkle_warm",
+          "drag": 0.08
+        }
+      ]
+    },
+    {
+      "id": "glow_105.default",
+      "type": "glow",
+      "duration_s": 0.45,
+      "blend": "additive",
+      "anchors": [{ "target": "object", "name": "center", "offset_px": [0, 0] }],
+      "scale": { "ref": "viewport", "factor": 1.0 },
+      "density_policy": "viewport_constant",
+      "audio_hook": "none",
+      "concurrency_tag": "fx_minor",
+      "max_concurrent": 2,
+      "glow": { "radius_px": 72, "intensity": 0.55, "falloff": "smoothstep", "pulses": 1 }
+    },
+    {
+      "id": "light_boost.default",
+      "type": "glow",
+      "duration_s": 0.6,
+      "blend": "additive",
+      "anchors": [{ "target": "object", "name": "center", "offset_px": [0, 0] }],
+      "scale": { "ref": "viewport", "factor": 1.0 },
+      "density_policy": "viewport_constant",
+      "audio_hook": "none",
+      "concurrency_tag": "fx_minor",
+      "max_concurrent": 2,
+      "glow": { "radius_px": 90, "intensity": 0.70, "falloff": "smoothstep", "pulses": 1 }
+    },
+    {
+      "id": "gold_dust_soft.burst",
+      "type": "burst",
+      "duration_s": 0.8,
+      "blend": "alpha",
+      "anchors": [{ "target": "object", "name": "center", "offset_px": [0, 0] }],
+      "scale": { "ref": "object_bbox", "factor": 1.0 },
+      "density_policy": "object_area",
+      "audio_hook": "none",
+      "concurrency_tag": "fx_minor",
+      "max_concurrent": 2,
+      "emitters": [
+        {
+          "shape": "point",
+          "count": 24,
+          "spread_deg": 110,
+          "speed_min_max": [60, 120],
+          "life_s_min_max": [0.5, 0.8],
+          "size_px_start_end": [4, 1],
+          "alpha_curve": "ease_out_quadratic",
+          "color_palette": "gold_soft",
+          "drag": 0.1
+        }
+      ]
+    },
+    {
+      "id": "confetti_soft.sparse",
+      "type": "confetti",
+      "duration_s": 0.80,
+      "blend": "alpha",
+      "anchors": [{ "target": "scene", "name": "top_center", "offset_px": [0, 0] }],
+      "scale": { "ref": "viewport", "factor": 1.0 },
+      "density_policy": "viewport_constant",
+      "audio_hook": "none",
+      "concurrency_tag": "fx_final",
+      "max_concurrent": 2,
+      "emitters": [
+        {
+          "shape": "cone",
+          "count": 22,
+          "spread_deg": 65,
+          "speed_min_max": [120, 180],
+          "life_s_min_max": [0.9, 1.2],
+          "size_px_start_end": [8, 8],
+          "alpha_start_end": [0.9, 0.0],
+          "color_palette": "confetti_soft_pastel",
+          "gravity": 360,
+          "drag": 0.15
+        }
+      ]
+    },
+    {
+      "id": "rainbow_rays_soft.default",
+      "type": "rays",
+      "duration_s": 2.00,
+      "blend": "additive",
+      "anchors": [{ "target": "scene", "name": "behind_subject", "offset_px": [0, 0] }],
+      "scale": { "ref": "object_bbox", "factor": 1.2 },
+      "density_policy": "viewport_constant",
+      "audio_hook": "none",
+      "concurrency_tag": "fx_final",
+      "max_concurrent": 2,
+      "rays": { "count": 8, "spread_deg": 180, "jitter_deg": 6, "alpha_profile": "bell", "palette": "rainbow_pastel" }
+    },
+    {
+      "id": "rainbow_ribbon_soft.arc_small",
+      "type": "ribbon",
+      "duration_s": 0.7,
+      "blend": "additive",
+      "anchors": [{ "target": "character", "name": "wand_tip", "offset_px": [0, 0] }],
+      "scale": { "ref": "viewport", "factor": 1.0 },
+      "density_policy": "viewport_constant",
+      "audio_hook": "SFX_FX_SPARK",
+      "concurrency_tag": "fx_minor",
+      "max_concurrent": 2,
+      "ribbon": { "path": "bezier_arc_soft", "width_px": [18, 12], "wobble_amp_px": 3, "wobble_freq_hz": 2.2, "opacity": [0.25, 0.0] }
+    },
+    {
+      "id": "sparkle_trail_soft.default",
+      "type": "trail",
+      "duration_s": 0.4,
+      "blend": "additive",
+      "anchors": [{ "target": "object", "name": "center", "offset_px": [0, 0] }],
+      "scale": { "ref": "object_bbox", "factor": 1.0 },
+      "density_policy": "tiered",
+      "audio_hook": "none",
+      "concurrency_tag": "fx_minor",
+      "max_concurrent": 2,
+      "emitters": [
+        {
+          "shape": "point",
+          "rate_rps": 24,
+          "size_px_start_end": [3, 0],
+          "alpha_start_end": [0.9, 0.0],
+          "color_palette": "sparkle_warm"
+        }
+      ]
+    },
+    {
+      "id": "ring_sweep_tier_0.4s",
+      "type": "ring",
+      "duration_s": 0.4,
+      "blend": "additive",
+      "anchors": [{ "target": "object", "name": "tier_center", "offset_px": [0, 0] }],
+      "scale": { "ref": "object_bbox", "factor": 1.0 },
+      "density_policy": "object_area",
+      "audio_hook": "none",
+      "concurrency_tag": "fx_minor",
+      "max_concurrent": 2,
+      "emitters": [
+        {
+          "shape": "ring",
+          "count": 26,
+          "arc_deg": 330,
+          "speed_min_max": [40, 80],
+          "life_s_min_max": [0.3, 0.4],
+          "size_px_start_end": [2, 0],
+          "alpha_start_end": [0.8, 0.0],
+          "color_palette": "sparkle_warm"
+        }
+      ]
+    },
+    {
+      "id": "light_boost.micro",
+      "type": "glow",
+      "duration_s": 1.10,
+      "blend": "additive",
+      "anchors": [{ "target": "object", "name": "center", "offset_px": [0, 0] }],
+      "scale": { "ref": "viewport", "factor": 1.0 },
+      "density_policy": "viewport_constant",
+      "audio_hook": "none",
+      "concurrency_tag": "fx_minor",
+      "max_concurrent": 2,
+      "glow": {
+        "radius_px": 84,
+        "intensity": 0.65,
+        "falloff": "smoothstep",
+        "pulses": 1
+      }
+    },
+    {
+      "id": "gold_dust_rain.soft",
+      "type": "particles",
+      "duration_s": 1.00,
+      "blend": "alpha",
+      "anchors": [{ "target": "scene", "name": "behind_subject", "offset_px": [0, 0] }],
+      "scale": { "ref": "viewport", "factor": 1.0 },
+      "density_policy": "viewport_constant",
+      "audio_hook": "none",
+      "concurrency_tag": "fx_final",
+      "max_concurrent": 2,
+      "emitters": [
+        {
+          "shape": "cone",
+          "count": 30,
+          "spread_deg": 45,
+          "speed_min_max": [60, 100],
+          "life_s_min_max": [0.9, 1.2],
+          "size_px_start_end": [4, 6],
+          "alpha_curve": "ease_out_quadratic",
+          "color_palette": "gold_soft",
+          "gravity": 160,
+          "drag": 0.08,
+          "texture": "dust.soft_disc",
+          "twinkle": {
+            "enabled": true,
+            "peak_at": 0.5,
+            "width_s": 0.20
+          }
+        }
+      ],
+      "notes": "use 2-3 passes in final window with 0.5-0.8s gaps; do not overlap"
+    },
+    {
+      "id": "rays_warm.default",
+      "type": "rays",
+      "duration_s": 2.00,
+      "blend": "additive",
+      "anchors": [{ "target": "scene", "name": "behind_subject", "offset_px": [0, 0] }],
+      "scale": { "ref": "object_bbox", "factor": 1.2 },
+      "density_policy": "viewport_constant",
+      "audio_hook": "none",
+      "concurrency_tag": "fx_final",
+      "max_concurrent": 2,
+      "rays": {
+        "count": 9,
+        "spread_deg": 180,
+        "jitter_deg": 6,
+        "alpha_profile": "bell",
+        "palette": "warm_gold"
+      }
+    },
+    {
+      "id": "env.focus.dim_soft",
+      "type": "overlay",
+      "duration_s": 1.80,
+      "blend": "alpha",
+      "anchors": [{ "target": "object", "name": "center", "offset_px": [0, 0] }],
+      "scale": { "ref": "viewport", "factor": 1.0 },
+      "density_policy": "viewport_constant",
+      "audio_hook": "none",
+      "concurrency_tag": "fx_final",
+      "max_concurrent": 1,
+      "overlay": {
+        "style": "vignette",
+        "inner_radius_px_factor": 0.38,
+        "outer_opacity": 0.30,
+        "falloff": "smoothstep",
+        "exclude_safe_areas": true
+      },
+      "notes": "do not dim faces/UI (safe areas enforced)"
+    },
+    {
+      "id": "rainbow_ribbon_soft.arc_reveal",
+      "type": "ribbon",
+      "duration_s": 1.20,
+      "blend": "additive",
+      "anchors": [{ "target": "character", "name": "wand_tip", "offset_px": [0, 0] }],
+      "scale": { "ref": "viewport", "factor": 1.0 },
+      "density_policy": "viewport_constant",
+      "audio_hook": "SFX_FX_SPARK",
+      "concurrency_tag": "fx_minor",
+      "max_concurrent": 2,
+      "ribbon": {
+        "path": "bezier_arc_soft",
+        "width_px": [20, 14],
+        "wobble_amp_px": 3,
+        "wobble_freq_hz": 2.0,
+        "opacity": [0.25, 0.0]
+      }
+    },
+
+    { "id": "gp.snap.local", "type": "bundle", "components": [
+      { "ref": "sparkle_light.small", "at_s": 0.00, "attach": { "target": "slot", "anchor": "snap_pivot" } },
+      { "ref": "light_boost.default", "at_s": 0.06, "attach": { "target": "slot", "anchor": "snap_pivot" }, "tune": { "duration_s": 0.5, "glow": { "pulses": 1 } } },
+      { "inline": { "type": "scale_pulse", "pattern": "two_step", "kf": [0.96, 1.02, 1.0], "duration_s": 0.17, "easing": "easeOutBack" }, "at_s": 0.00 },
+      { "audio": { "sfx_code": "SFX_GP_SNAP", "when": "at_start" } }
+    ], "constraints": "≤2 FX; no screen wash" },
+
+    { "id": "gp.snap.perimeter", "type": "bundle", "components": [
+      { "inline": { "type": "sweep", "duration_s": 0.40, "arc_deg": 360, "speed_deg_s": 720, "tail_softness": 0.7 }, "at_s": 0.00, "attach": { "target": "slot", "anchor": "snap_path" } },
+      { "ref": "light_boost.default", "at_s": 0.10, "attach": { "target": "slot", "anchor": "snap_path" }, "tune": { "duration_s": 0.4 } },
+      { "audio": { "sfx_code": "SFX_GP_SNAP", "when": "at_start" } }
+    ], "notes": "edge sweep + soft boost; no center spark" },
+
+    { "id": "gp.snap.container", "type": "bundle", "components": [
+      { "ref": "sparkle_trail_soft.default", "at_s": 0.00, "attach": { "target": "object", "anchor": "center" } },
+      { "ref": "sparkle_light.small", "at_s": 0.00, "attach": { "target": "container", "anchor": "rim" } },
+      { "ref": "light_boost.default", "at_s": 0.08, "attach": { "target": "container", "anchor": "rim" } },
+      { "audio": { "sfx_code": "SFX_GP_SNAP", "when": "at_start" } }
+    ], "notes": "trail → rim spark → boost; tiny wiggle by animation" },
+
+    { "id": "trace.path.sheen", "type": "bundle", "components": [
+      { "inline": { "type": "sheen", "direction": "along_path", "width_pct": 0.12, "brightness_gain": 0.15, "duration_s": 0.8, "falloff": "smoothstep" }, "at_s": 0.00, "attach": { "target": "path", "anchor": "trace_path" } }
+    ] },
+
+    { "id": "paint.fill.soft", "type": "bundle", "components": [
+      { "inline": { "type": "sheen", "direction": "along_path", "width_pct": 0.14, "brightness_gain": 0.15, "duration_s": 0.9, "falloff": "smoothstep" }, "at_s": 0.00, "attach": { "target": "region", "anchor": "fill_path" } },
+      { "ref": "light_boost.default", "at_s": 0.10, "attach": { "target": "region", "anchor": "fill_path" }, "tune": { "duration_s": 0.5 } }
+    ] },
+
+    { "id": "char.accessory.sheen", "type": "bundle", "components": [
+      { "inline": { "type": "sheen", "direction": "diagonal_up", "width_pct": 0.16, "brightness_gain": 0.16, "duration_s": 0.8, "falloff": "smoothstep" }, "at_s": 0.00, "attach": { "target": "accessory", "anchor": "accessory.perimeter" } },
+      { "ref": "light_boost.default", "at_s": 0.10, "attach": { "target": "accessory", "anchor": "center" }, "tune": { "duration_s": 0.5 } }
+    ], "notes": "noble sheen; no hard click" },
+
+    { "id": "cake.tier.snap", "type": "bundle", "components": [
+      { "ref": "ring_sweep_tier_0.4s", "at_s": 0.00, "attach": { "target": "tier", "anchor": "tier_ring" } },
+      { "ref": "sparkle_light.small", "at_s": 0.00, "attach": { "target": "tier", "anchor": "tier_ring" }, "tune": { "emitters": [{ "count": 10 }] } },
+      { "audio": { "sfx_code": "SFX_GP_SNAP", "when": "at_start" } }
+    ], "notes": "ring sweep on tier + micro sparkles" },
+
+    { "id": "char.hoof.celebration.soft", "type": "bundle", "components": [
+      { "inline": { "type": "burst", "duration_s": 0.6, "emitters": [{ "shape": "point", "count": 16, "spread_deg": 80, "speed_min_max": [90, 150], "life_s_min_max": [0.5, 0.8], "size_px_start_end": [3, 0], "alpha_start_end": [0.9, 0.0], "color_palette": "rainbow_pastel" }] }, "at_s": 0.00, "attach": { "target": "character", "anchor": "hoof_tip" } },
+      { "ref": "rainbow_ribbon_soft.arc_small", "at_s": 0.10, "attach": { "target": "character", "anchor": "hoof_tip" } },
+      { "audio": { "sfx_code": "SFX_FX_SPARK", "when": "at_start" } }
+    ] },
+
+    { "id": "env.focus.gold_spiral_orbit", "type": "bundle", "components": [
+      { "inline": { "type": "orbit", "duration_s": 1.4, "emitters": [{ "shape": "orbit", "count": 18, "speed_min_max": [20, 36], "life_s_min_max": [1.0, 1.4], "size_px_start_end": [3, 1], "alpha_start_end": [0.8, 0.0], "color_palette": "gold_soft" }] }, "at_s": 0.00, "attach": { "target": "object", "anchor": "center" } }
+    ], "notes": "gentle dim/spiral; pair with success/final SFX externally" },
+
+    { "id": "cake.final.soft", "type": "bundle", "components": [
+      { "ref": "light_boost.default", "at_s": 0.00, "attach": { "target": "cake", "anchor": "center" } },
+      { "ref": "ring_sweep_tier_0.4s", "at_s": 0.10, "attach": { "target": "cake", "anchor": "tier_ring" } },
+      { "ref": "ring_sweep_tier_0.4s", "at_s": 0.44, "attach": { "target": "cake", "anchor": "tier_ring" } }
+    ], "notes": "cascading sweeps bottom→top; minimal confetti separate if requested" },
+
+    { "id": "env.confetti.top_soft", "type": "bundle", "components": [
+      { "ref": "confetti_soft.sparse", "at_s": 0.00, "attach": { "target": "scene", "anchor": "top_edge" } }
+    ] },
+
+    { "id": "env.transition.diagonal_soft", "type": "bundle", "components": [
+      { "inline": { "type": "sweep", "duration_s": 1.0, "arc_deg": 180, "speed_deg_s": 360, "tail_softness": 0.6 }, "at_s": 0.00, "attach": { "target": "scene", "anchor": "diagonal_sweep" } },
+      { "inline": { "type": "burst", "duration_s": 0.8, "emitters": [{ "shape": "point", "count": 12, "spread_deg": 60, "speed_min_max": [80, 140], "life_s_min_max": [0.5, 0.8], "size_px_start_end": [3, 0], "alpha_start_end": [0.8, 0.0], "color_palette": "warm_gold" }] }, "at_s": 0.10, "attach": { "target": "scene", "anchor": "diagonal_sweep" } },
+      { "audio": { "sfx_code": "SFX_FX_TRANS", "when": "at_start" } }
+    ], "notes": "soft diagonal light wave; no flash" },
+
+    { "id": "ui.tap.play.magic", "type": "bundle", "components": [
+      { "inline": { "type": "ring_glow", "thickness_px": 2.5, "blur_px": 6, "opacity": 0.38, "duration_s": 0.18 }, "at_s": 0.00, "attach": { "target": "button", "anchor": "edge_perimeter" } },
+      { "inline": { "type": "sheen", "direction": "diagonal_up", "width_pct": 0.20, "brightness_gain": 0.12, "duration_s": 0.24, "falloff": "smoothstep" }, "at_s": 0.04, "attach": { "target": "button", "anchor": "edge_perimeter" } },
+      { "inline": { "type": "scale_pulse", "pattern": "two_step", "kf": [0.96, 1.02, 1.0], "duration_s": 0.17, "easing": "easeOutBack" }, "at_s": 0.00 },
+      { "inline": { "type": "particles", "emission_surface": "perimeter", "density_per_100px": { "base": 14, "rich": 20 }, "spawn_window_s": [0.00, 0.20], "lifetime_s": [1.2, 1.8], "speed_px_s": [120, 220], "direction": "radial_out", "spread_deg": 22, "gravity_px_s2": 0, "drag": 0.12, "size_px": [4, 7], "alpha_curve": "ease_out_quadratic", "color_palette": "warm_gold", "texture": "dust.soft_disc", "blend": "additive", "twinkle": { "enabled": false }, "rotation_deg_s": [0, 0], "jitter": { "pos_px": [3, 3], "angle_deg": 10, "speed_pct": 15, "time_ms": 60 }, "clip": { "max_radius_px_factor": 1.3 } }, "at_s": 0.00, "attach": { "target": "button", "anchor": "edge_perimeter" } },
+      { "audio": { "sfx_code": "SFX_UI_TAP", "when": "on_press_up" } }
+    ], "constraints": "do not obscure icon/label" },
+
+    { "id": "ui.tap.album.magic", "type": "bundle", "components": [
+      { "inline": { "type": "ring_glow", "thickness_px": 2.0, "blur_px": 5, "opacity": 0.28, "duration_s": 0.16 }, "at_s": 0.00, "attach": { "target": "button", "anchor": "edge_perimeter" } },
+      { "inline": { "type": "sheen", "direction": "diagonal_up", "width_pct": 0.16, "brightness_gain": 0.10, "duration_s": 0.22, "falloff": "smoothstep" }, "at_s": 0.04, "attach": { "target": "button", "anchor": "edge_perimeter" } },
+      { "inline": { "type": "scale_pulse", "pattern": "single", "kf": [0.98, 1.0], "duration_s": 0.14, "easing": "easeOutCubic" }, "at_s": 0.00 },
+      { "inline": { "type": "particles", "emission_surface": "perimeter", "density_per_100px": { "base": 8, "rich": 12 }, "spawn_window_s": [0.00, 0.22], "lifetime_s": [1.0, 1.6], "speed_px_s": [90, 160], "direction": "radial_out", "spread_deg": 14, "gravity_px_s2": 0, "drag": 0.12, "size_px": [4, 6], "alpha_curve": "ease_out_quadratic", "color_palette": "cool_silver_pastel", "texture": "glitter.chip_diamond", "blend": "alpha", "twinkle": { "enabled": true, "peak_at": 0.5, "width_s": 0.18 }, "rotation_deg_s": [-90, 90], "jitter": { "pos_px": [3, 3], "angle_deg": 10, "speed_pct": 15, "time_ms": 60 }, "clip": { "max_radius_px_factor": 0.95 } }, "at_s": 0.02, "attach": { "target": "button", "anchor": "edge_perimeter" } },
+      { "audio": { "sfx_code": "SFX_UI_TAP", "when": "on_press_up" } }
+    ] },
+
+    { "id": "env.air.gold_dust", "type": "bundle", "components": [
+      { "inline": { "type": "particles", "emission_surface": "area", "total_count_base": 8, "lifetime_s": [2.0, 3.0], "speed_px_s": [6, 14], "direction": "radial_out", "spread_deg": 360, "gravity_px_s2": 0, "drag": 0.05, "size_px": [3, 5], "alpha_curve": "bell", "color_palette": "warm_gold", "texture": "dust.soft_disc", "blend": "additive", "twinkle": { "enabled": true, "peak_at": 0.6, "width_s": 0.4 }, "rotation_deg_s": [0, 0] }, "at_s": 0.00, "attach": { "target": "scene", "anchor": "area" } }
+    ], "notes": "ultra-sparse ambient; off by default" },
+
+    { "id": "hero_spotlight.soft", "type": "bundle", "components": [
+      { "ref": "env.focus.dim_soft", "at_s": 0.00, "attach": { "target": "object", "anchor": "center" } },
+      { "ref": "light_boost.default", "at_s": 0.00, "attach": { "target": "object", "anchor": "center" }, "tune": { "duration_s": 0.80 } },
+      { "ref": "rays_warm.default", "at_s": 0.85, "attach": { "target": "scene", "anchor": "behind_subject" } },
+      { "ref": "gold_dust_rain.soft", "at_s": 1.40, "attach": { "target": "scene", "anchor": "behind_subject" } }
+    ], "constraints": "≤2 FX; pair with SFX_RW_SUCCESS at start, SFX_RW_FINAL at end", "notes": "spotlight on completed object/sticker/gift: gentle dim + warm rays + local boost" }
+  ]
+}
