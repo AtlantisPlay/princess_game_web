@@ -1,0 +1,251 @@
+{
+  "general": {
+    "prompt": "Colorful 2D flat design style. Clean vector graphics. Bright pastel colors. Soft shadows. Friendly and cheerful aesthetic for children's game.",
+    "avoid": "photorealism, text, watermark, blur, gradients, complex details, multiple characters in one image",
+    "categoryExamplePrompt": "{0} is a proper image in the same category.",
+    "model": "Gemini",
+    "settings": {
+      "defaultQuality": "high"
+    }
+  },
+  "categories": {
+    "character_princess": {
+      "prompt": "Young princess character. Full-body standing pose. Friendly expression. Colorful dress with matching accessories. Simple vector style. Age 8-10 years old. Cute proportions.",
+      "avoid": "multiple poses, weapons, complex background elements",
+      "settings": {
+        "aspectRatio": "1:1",
+        "transparency": true
+      },
+      "postProcessing": {
+        "scale": "648x648"
+      },
+      "assets": [
+        {
+          "output": "princess_olesia_standing",
+          "prompt": "Purple dress with lavender accents. Light purple hair bow. Standing upright with friendly smile. Arms at sides. Full body visible from feet to head.",
+          "locked": false,
+          "animations": [
+            {
+              "output": "princess_olesia_idle",
+              "prompt": "gentle breathing motion, slight body sway, subtle dress movement",
+              "loop": true,
+              "duration": 4,
+              "postProcessing": {
+                "scale": 0.25,
+                "fps": 12,
+                "quality": 80
+              }
+            },
+            {
+              "output": "princess_olesia_wave",
+              "prompt": "right arm raising and waving gently back and forth",
+              "loop": true,
+              "duration": 4,
+              "postProcessing": {
+                "scale": 0.25,
+                "fps": 12,
+                "quality": 80
+              }
+            },
+            {
+              "output": "princess_olesia_nod",
+              "prompt": "head nodding forward gently once",
+              "loop": false,
+              "duration": 4,
+              "postProcessing": {
+                "scale": 0.25,
+                "fps": 12,
+                "quality": 80
+              }
+            }
+          ]
+        },
+        {
+          "output": "princess_zlata_standing",
+          "sourceAsset": {
+            "path": "princess_olesia_standing",
+            "prompt": "Source \"{0}\": Use as base template for proportions and pose style.",
+            "inputFidelity": "medium"
+          },
+          "prompt": "Blue dress with sky-blue accents. Blue hair bow. Standing upright with friendly smile. Arms at sides. Different face and hair from source.",
+          "locked": false,
+          "animations": [
+            {
+              "output": "princess_zlata_idle",
+              "prompt": "gentle breathing motion, slight body sway, subtle dress movement",
+              "loop": true,
+              "duration": 4,
+              "postProcessing": {
+                "scale": 0.25,
+                "fps": 12,
+                "quality": 80
+              }
+            },
+            {
+              "output": "princess_zlata_wave",
+              "prompt": "right arm raising and waving gently back and forth",
+              "loop": true,
+              "duration": 4,
+              "postProcessing": {
+                "scale": 0.25,
+                "fps": 12,
+                "quality": 80
+              }
+            },
+            {
+              "output": "princess_zlata_nod",
+              "prompt": "head nodding forward gently once",
+              "loop": false,
+              "duration": 4,
+              "postProcessing": {
+                "scale": 0.25,
+                "fps": 12,
+                "quality": 80
+              }
+            }
+          ]
+        },
+        {
+          "output": "princess_milana_standing",
+          "sourceAsset": {
+            "path": "princess_olesia_standing",
+            "prompt": "Source \"{0}\": Use as base template for proportions and pose style.",
+            "inputFidelity": "medium"
+          },
+          "prompt": "Green dress with mint-green accents. Green hair bow. Standing upright with friendly smile. Arms at sides. Different face and hair from source.",
+          "locked": false,
+          "animations": [
+            {
+              "output": "princess_milana_idle",
+              "prompt": "gentle breathing motion, slight body sway, subtle dress movement",
+              "loop": true,
+              "duration": 4,
+              "postProcessing": {
+                "scale": 0.25,
+                "fps": 12,
+                "quality": 80
+              }
+            },
+            {
+              "output": "princess_milana_wave",
+              "prompt": "right arm raising and waving gently back and forth",
+              "loop": true,
+              "duration": 4,
+              "postProcessing": {
+                "scale": 0.25,
+                "fps": 12,
+                "quality": 80
+              }
+            },
+            {
+              "output": "princess_milana_nod",
+              "prompt": "head nodding forward gently once",
+              "loop": false,
+              "duration": 4,
+              "postProcessing": {
+                "scale": 0.25,
+                "fps": 12,
+                "quality": 80
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "prop_carriage": {
+      "prompt": "Fairytale princess carriage. Ornate decorative design with curved cabin. Visible wheels. Cream-colored main body. Gold accents. Curtains visible in windows. Simple flat style without horses or characters.",
+      "avoid": "horses, drivers, characters inside, complex shadows, 3D rendering",
+      "settings": {
+        "aspectRatio": "1:1",
+        "transparency": true
+      },
+      "postProcessing": {
+        "scale": "340x340"
+      },
+      "assets": [
+        {
+          "output": "carriage_olesia_purple",
+          "prompt": "Purple accent color on door frame and window borders. Light lavender curtains visible in arched window. Gold crown decoration on top. Positioned at slight angle to show door.",
+          "locked": false
+        },
+        {
+          "output": "carriage_zlata_blue",
+          "sourceAsset": {
+            "path": "carriage_olesia_purple",
+            "prompt": "Source \"{0}\": Match exact carriage design, shape, and style.",
+            "inputFidelity": "high"
+          },
+          "prompt": "Blue accent color on door frame and window borders instead of purple. Light sky-blue curtains visible in arched window. Same gold crown and positioning.",
+          "locked": false
+        },
+        {
+          "output": "carriage_milana_green",
+          "sourceAsset": {
+            "path": "carriage_olesia_purple",
+            "prompt": "Source \"{0}\": Match exact carriage design, shape, and style.",
+            "inputFidelity": "high"
+          },
+          "prompt": "Green accent color on door frame and window borders instead of purple. Light mint-green curtains visible in arched window. Same gold crown and positioning.",
+          "locked": false
+        }
+      ]
+    },
+    "composite_princess_in_carriage": {
+      "prompt": "Fairytale princess carriage with princess character visible inside the window. Ornate carriage design with curved cabin. Princess waving from arched window. Carriage has colored accent borders and curtains. Gold crown on top. Simple flat vector style.",
+      "avoid": "horses, drivers, multiple characters, complex shadows",
+      "settings": {
+        "aspectRatio": "1:1",
+        "transparency": true
+      },
+      "postProcessing": {
+        "scale": "480x480"
+      },
+      "assets": [
+        {
+          "output": "princess_in_carriage_olesia",
+          "prompt": "Purple dress princess visible in carriage window waving. Purple accents on carriage door and borders. Lavender curtains. Princess has purple dress with hair bow. Friendly expression visible through window.",
+          "locked": false
+        },
+        {
+          "output": "princess_in_carriage_zlata",
+          "sourceAsset": {
+            "path": "princess_in_carriage_olesia",
+            "prompt": "Source \"{0}\": Match exact carriage design and composition style.",
+            "inputFidelity": "high"
+          },
+          "prompt": "Blue dress princess visible in carriage window waving. Blue accents on carriage instead of purple. Sky-blue curtains. Princess has blue dress with hair bow.",
+          "locked": false
+        },
+        {
+          "output": "princess_in_carriage_milana",
+          "sourceAsset": {
+            "path": "princess_in_carriage_olesia",
+            "prompt": "Source \"{0}\": Match exact carriage design and composition style.",
+            "inputFidelity": "high"
+          },
+          "prompt": "Green dress princess visible in carriage window waving. Green accents on carriage instead of purple. Mint-green curtains. Princess has green dress with hair bow.",
+          "locked": false
+        }
+      ]
+    },
+    "background": {
+      "prompt": "Park garden scene. Flat vector illustration. Daylight setting. Soft pastel colors. Light green grass with small flower patches. Silhouettes of trees in background. Blue sky with 1-2 white clouds. Simple clean composition. Wide landscape view.",
+      "avoid": "characters, UI elements, text, complex details, busy patterns, realistic rendering",
+      "model": "OpenAI",
+      "settings": {
+        "aspectRatio": "16:9",
+        "transparency": false
+      },
+      "postProcessing": {
+        "scale": "1920x1080"
+      },
+      "assets": [
+        {
+          "output": "background_park_garden_day",
+          "prompt": "Peaceful park setting with gentle rolling grass field. Soft tree silhouettes in distance. Clear blue sky. Simple composition with open space for characters in foreground.",
+          "locked": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "general": {
+    "languages": ["uk", "en"]
+  },
+  "voices": {
+    "narrator": {
+      "gemini_voice": "Aoede",
+      "locked": false,
+      "voiceovers": [
+        {
+          "output": "mg15_intro_context",
+          "text": [
+            { "language": "uk", "text": "Привітаймося з подружками Соломії!" },
+            { "language": "en", "text": "Let's greet Solomiya's friends!" }
+          ],
+          "style_prompt": "Warm and friendly tone, welcoming with gentle enthusiasm",
+          "locked": false
+        },
+        {
+          "output": "mg15_instruction",
+          "text": [
+            { "language": "uk", "text": "Посади кожну принцесу у карету її кольору." },
+            { "language": "en", "text": "Place each princess in the carriage of her color." }
+          ],
+          "style_prompt": "Clear and instructional, encouraging and patient tone",
+          "locked": false
+        },
+        {
+          "output": "mg15_hint_continue",
+          "text": [
+            { "language": "uk", "text": "Продовж допомагати принцесам." },
+            { "language": "en", "text": "Continue helping the princesses." }
+          ],
+          "style_prompt": "Gentle encouragement, supportive and patient",
+          "locked": false
+        },
+        {
+          "output": "mg15_hint_try_again",
+          "text": [
+            { "language": "uk", "text": "Перетягни принцесу до карети такого ж кольору." },
+            { "language": "en", "text": "Drag the princess to the carriage of the same color." }
+          ],
+          "style_prompt": "Helpful and reassuring, not critical, encouraging to try again",
+          "locked": false
+        },
+        {
+          "output": "mg15_final_phrase",
+          "text": [
+            { "language": "uk", "text": "Чудово! Подружки їдуть до Соломії!" },
+            { "language": "en", "text": "Wonderful! The friends are going to Solomiya!" }
+          ],
+          "style_prompt": "Excited and celebratory, warm and joyful tone",
+          "locked": false
+        }
+      ]
+    },
+    "princess_olesia": {
+      "gemini_voice": "Despina",
+      "locked": false,
+      "voiceovers": [
+        {
+          "output": "mg15_intro_olesia",
+          "text": [
+            { "language": "uk", "text": "Це Олеся!" },
+            { "language": "en", "text": "This is Olesia!" }
+          ],
+          "style_prompt": "Bright and cheerful, young girl voice with excitement and friendliness",
+          "locked": false
+        }
+      ]
+    },
+    "princess_zlata": {
+      "gemini_voice": "Pulcherrima",
+      "locked": false,
+      "voiceovers": [
+        {
+          "output": "mg15_intro_zlata",
+          "text": [
+            { "language": "uk", "text": "Це Злата!" },
+            { "language": "en", "text": "This is Zlata!" }
+          ],
+          "style_prompt": "Sweet and melodic, young girl voice with warmth and friendliness",
+          "locked": false
+        }
+      ]
+    },
+    "princess_milana": {
+      "gemini_voice": "Leda",
+      "locked": false,
+      "voiceovers": [
+        {
+          "output": "mg15_intro_milana",
+          "text": [
+            { "language": "uk", "text": "Це Мілана!" },
+            { "language": "en", "text": "This is Milana!" }
+          ],
+          "style_prompt": "Gentle and playful, young girl voice with charm and friendliness",
+          "locked": false
+        }
+      ]
+    }
+  }
+}

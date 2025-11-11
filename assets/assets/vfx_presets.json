@@ -285,6 +285,65 @@
         "opacity": [0.25, 0.0]
       }
     },
+    {
+      "id": "steam_soft",
+      "type": "burst",
+      "duration_s": 0.8,
+      "blend": "alpha",
+      "anchors": [{ "target": "object", "name": "top", "offset_px": [0, -10] }],
+      "scale": { "ref": "object_bbox", "factor": 0.6 },
+      "density_policy": "object_area",
+      "audio_hook": "none",
+      "concurrency_tag": "fx_minor",
+      "max_concurrent": 3,
+      "emitters": [
+        {
+          "shape": "cone",
+          "count": 12,
+          "spread_deg": 35,
+          "speed_min_max": [-80, -120],
+          "life_s_min_max": [0.6, 0.9],
+          "size_px_start_end": [6, 2],
+          "alpha_start_end": [0.25, 0.0],
+          "color_palette": "steam_white",
+          "drag": 0.12,
+          "texture": "mist.soft"
+        }
+      ],
+      "notes": "Gentle steam rising from hot cups/containers. Soft, subtle effect for warmth indication."
+    },
+    {
+      "id": "steam_rainbow_soft",
+      "type": "burst",
+      "duration_s": 0.9,
+      "blend": "additive",
+      "anchors": [{ "target": "object", "name": "top", "offset_px": [0, -10] }],
+      "scale": { "ref": "object_bbox", "factor": 0.7 },
+      "density_policy": "object_area",
+      "audio_hook": "none",
+      "concurrency_tag": "fx_minor",
+      "max_concurrent": 3,
+      "emitters": [
+        {
+          "shape": "cone",
+          "count": 18,
+          "spread_deg": 40,
+          "speed_min_max": [-90, -140],
+          "life_s_min_max": [0.7, 1.0],
+          "size_px_start_end": [7, 3],
+          "alpha_start_end": [0.35, 0.0],
+          "color_palette": "rainbow_pastel",
+          "drag": 0.10,
+          "texture": "mist.soft",
+          "twinkle": {
+            "enabled": true,
+            "peak_at": 0.4,
+            "width_s": 0.25
+          }
+        }
+      ],
+      "notes": "Magical rainbow steam for celebration effects. Rising steam with soft rainbow sparkle."
+    },
 
     { "id": "gp.snap.local", "type": "bundle", "components": [
       { "ref": "sparkle_light.small", "at_s": 0.00, "attach": { "target": "slot", "anchor": "snap_pivot" } },
@@ -376,7 +435,97 @@
       { "ref": "env.focus.dim_soft", "at_s": 0.00, "attach": { "target": "object", "anchor": "center" } },
       { "ref": "light_boost.default", "at_s": 0.00, "attach": { "target": "object", "anchor": "center" }, "tune": { "duration_s": 0.80 } },
       { "ref": "rays_warm.default", "at_s": 0.85, "attach": { "target": "scene", "anchor": "behind_subject" } },
-      { "ref": "gold_dust_rain.soft", "at_s": 1.40, "attach": { "target": "scene", "anchor": "behind_subject" } }
-    ], "constraints": "≤2 FX; pair with SFX_RW_SUCCESS at start, SFX_RW_FINAL at end", "notes": "spotlight on completed object/sticker/gift: gentle dim + warm rays + local boost" }
+      { "ref": "gold_dust_rain.soft", "at_s": 0.40, "attach": { "target": "scene", "anchor": "behind_subject" } }
+    ], "constraints": "≤2 FX; pair with SFX_RW_SUCCESS at start, SFX_RW_FINAL at end", "notes": "spotlight on completed object/sticker/gift: gentle dim + warm rays + local boost" },
+
+    { "id": "ring.sweep.soft.0_4s", "type": "bundle", "components": [
+      { "ref": "ring_sweep_tier_0.4s", "at_s": 0.00, "attach": { "target": "object", "anchor": "tier_ring" } }
+    ], "notes": "Alias for ring_sweep_tier_0.4s - simple ring sweep effect" },
+
+    { "id": "ring.sweep.soft", "type": "bundle", "components": [
+      { "ref": "ring_sweep_tier_0.4s", "at_s": 0.00, "attach": { "target": "object", "anchor": "tier_ring" } }
+    ], "notes": "Alias for ring_sweep_tier_0.4s - simple ring sweep effect" },
+
+    { "id": "sparkle.light.small", "type": "bundle", "components": [
+      { "ref": "sparkle_light.small", "at_s": 0.00, "attach": { "target": "object", "anchor": "center" } },
+      { "audio": { "sfx_code": "SFX_FX_SPARK", "when": "at_start" } }
+    ], "notes": "Wrapper bundle for sparkle_light.small base preset" },
+
+    { "id": "fx.sparkle.light.small", "type": "bundle", "components": [
+      { "ref": "sparkle_light.small", "at_s": 0.00, "attach": { "target": "object", "anchor": "center" } },
+      { "audio": { "sfx_code": "SFX_FX_SPARK", "when": "at_start" } }
+    ], "notes": "Legacy alias for sparkle.light.small" },
+
+    { "id": "fx.twinkle.mini", "type": "bundle", "components": [
+      { "ref": "sparkle_light.small", "at_s": 0.00, "attach": { "target": "object", "anchor": "center" }, "tune": { "emitters": [{ "count": 8, "size_px_start_end": [3, 0] }] } },
+      { "audio": { "sfx_code": "SFX_FX_SPARK", "when": "at_start" } }
+    ], "notes": "Mini twinkle effect - reduced sparkle count" },
+
+    { "id": "gold_dust.burst.default", "type": "bundle", "components": [
+      { "ref": "gold_dust_soft.burst", "at_s": 0.00, "attach": { "target": "object", "anchor": "center" } }
+    ], "notes": "Alias for gold_dust_soft.burst" },
+
+    { "id": "gold_dust_soft", "type": "bundle", "components": [
+      { "ref": "gold_dust_soft.burst", "at_s": 0.00, "attach": { "target": "object", "anchor": "center" } }
+    ], "notes": "Alias for gold_dust_soft.burst" },
+
+    { "id": "confetti.soft.top", "type": "bundle", "components": [
+      { "ref": "confetti_soft.sparse", "at_s": 0.00, "attach": { "target": "scene", "anchor": "top_edge" } }
+    ], "notes": "Alias for env.confetti.top_soft" },
+
+    { "id": "env.confetti.soft.top", "type": "bundle", "components": [
+      { "ref": "confetti_soft.sparse", "at_s": 0.00, "attach": { "target": "scene", "anchor": "top_edge" } }
+    ], "notes": "Alias for env.confetti.top_soft" },
+
+    { "id": "sparkle_mini", "type": "bundle", "components": [
+      { "ref": "sparkle_light.small", "at_s": 0.00, "attach": { "target": "object", "anchor": "center" }, "tune": { "emitters": [{ "count": 6, "size_px_start_end": [3, 0] }] } }
+    ], "notes": "Mini sparkle - very small particle count" },
+
+    { "id": "light_boost", "type": "bundle", "components": [
+      { "ref": "light_boost.default", "at_s": 0.00, "attach": { "target": "object", "anchor": "center" } }
+    ], "notes": "Alias for light_boost.default" },
+
+    { "id": "spiral_orbit_soft", "type": "bundle", "components": [
+      { "ref": "env.focus.gold_spiral_orbit", "at_s": 0.00, "attach": { "target": "object", "anchor": "center" } }
+    ], "notes": "Alias for env.focus.gold_spiral_orbit" },
+
+    { "id": "rays.soft.hero.gold", "type": "rays", "duration_s": 2.00, "blend": "additive", "anchors": [{ "target": "scene", "name": "behind_subject", "offset_px": [0, 0] }], "scale": { "ref": "object_bbox", "factor": 1.2 }, "density_policy": "viewport_constant", "audio_hook": "none", "concurrency_tag": "fx_final", "max_concurrent": 2, "rays": { "count": 9, "spread_deg": 180, "jitter_deg": 6, "alpha_profile": "bell", "palette": "warm_gold" }, "notes": "Warm golden rays for hero spotlight (from VFX_SPECS_RAYS_SOFT_HERO.md)" },
+
+    { "id": "rays.soft.hero.rainbow", "type": "rays", "duration_s": 2.00, "blend": "additive", "anchors": [{ "target": "scene", "name": "behind_subject", "offset_px": [0, 0] }], "scale": { "ref": "object_bbox", "factor": 1.2 }, "density_policy": "viewport_constant", "audio_hook": "none", "concurrency_tag": "fx_final", "max_concurrent": 2, "rays": { "count": 8, "spread_deg": 180, "jitter_deg": 6, "alpha_profile": "bell", "palette": "rainbow_pastel" }, "notes": "Pastel rainbow rays for large rewards (from VFX_SPECS_RAYS_SOFT_HERO.md)" },
+
+    { "id": "error.shake.small", "type": "bundle", "components": [
+      { "inline": { "type": "shake", "duration_s": 0.3, "amplitude_px": 3, "frequency_hz": 12, "decay": "ease_out" }, "at_s": 0.00 },
+      { "audio": { "sfx_code": "SFX_SOFT_DENY", "when": "at_start" } }
+    ], "notes": "Small shake for error feedback" },
+
+    { "id": "error.bounce.back", "type": "bundle", "components": [
+      { "inline": { "type": "bounce_back", "duration_s": 0.4, "distance_px": 20, "easing": "ease_out_back" }, "at_s": 0.00 },
+      { "audio": { "sfx_code": "SFX_GP_DROP_FAIL", "when": "at_start" } }
+    ], "notes": "Bounce back animation for wrong placement" },
+
+    { "id": "error.dust.soft", "type": "bundle", "components": [
+      { "ref": "gold_dust_soft.burst", "at_s": 0.00, "attach": { "target": "object", "anchor": "center" }, "tune": { "emitters": [{ "count": 8, "alpha_start_end": [0.5, 0.0] }] } },
+      { "audio": { "sfx_code": "SFX_SOFT_DENY", "when": "at_start" } }
+    ], "notes": "Soft dust puff for error feedback" },
+
+    { "id": "paint.sparkles.colorMatch", "type": "bundle", "components": [
+      { "ref": "sparkle_light.small", "at_s": 0.00, "attach": { "target": "region", "anchor": "center" }, "tune": { "emitters": [{ "count": 12 }] } },
+      { "audio": { "sfx_code": "SFX_FX_SPARK", "when": "at_start" } }
+    ], "notes": "Sparkles on paint color match completion" },
+
+    { "id": "BUNDLEGLOWSOFT", "type": "bundle", "components": [
+      { "ref": "light_boost.default", "at_s": 0.00, "attach": { "target": "object", "anchor": "center" } }
+    ], "notes": "Legacy alias for universal soft glow" },
+
+    { "id": "BUNDLERLFOCUS_HERO", "type": "bundle", "components": [
+      { "ref": "env.focus.dim_soft", "at_s": 0.00, "attach": { "target": "object", "anchor": "center" } },
+      { "ref": "light_boost.default", "at_s": 0.00, "attach": { "target": "object", "anchor": "center" } },
+      { "ref": "rays_warm.default", "at_s": 0.85, "attach": { "target": "scene", "anchor": "behind_subject" } }
+    ], "notes": "Legacy alias for RL final hero focus (simplified hero_spotlight.soft)" },
+
+    { "id": "BUNDLERLCAKE", "type": "bundle", "components": [
+      { "ref": "light_boost.default", "at_s": 0.00, "attach": { "target": "cake", "anchor": "center" } },
+      { "ref": "ring_sweep_tier_0.4s", "at_s": 0.10, "attach": { "target": "cake", "anchor": "tier_ring" } }
+    ], "notes": "Legacy alias for RL final cake effect (simplified cake.final.soft)" }
   ]
 }
